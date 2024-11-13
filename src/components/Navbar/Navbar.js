@@ -1,13 +1,13 @@
 import React from 'react'
 import './Navbar.css'
 import Left from './Left/LeftSide'
-import Middle from './Middle/MiddleSide'
+import Middle from './MiddleSide/MiddleSide'
 import Right from './RightSide/RightSide'
 
-const Navbar = () => {
+const Navbar = ( {onMenuClick}) => {
   return (
     <nav id='navigator'>
-      <Left />
+      <Left onMenuClick = {onMenuClick}/>
       <Middle />
       <Right />
     </nav>

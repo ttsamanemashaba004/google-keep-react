@@ -3,10 +3,10 @@ import './Main.css'
 import Sidebar from './Sidebar/Sidebar'
 import Notes from './Notes/Notes'
 
-const Main = () => {
+const Main = ( {isExpanded}) => {
   return (
     <div className='main-section'>
-      <Sidebar />
+      <Sidebar isExpanded = {isExpanded}/>
       <Notes />
 
 

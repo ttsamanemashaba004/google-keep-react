@@ -1,11 +1,11 @@
 import React from "react";
 import './LeftSide.css';
 
-const Left = () => {
+const Left = ( {onMenuClick}) => {
   return (
     <div className="left-side">
       <div className="main-menu tooltipmain">
-        <span className="material-symbols-outlined menu tooltipmain2">
+        <span className="material-symbols-outlined menu tooltipmain2" onClick={onMenuClick}>
           menu
         </span>
         <span className="tooltip">Main menu</span>

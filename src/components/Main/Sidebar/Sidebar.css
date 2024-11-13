@@ -14,6 +14,7 @@ body{
     overflow-x: hidden;
 }
 
+
 /*Nav styling*/
 
 nav {
@@ -225,7 +226,7 @@ form {
 
 
 .text-appear{
-    display: none;
+    display: block;
 }
 
 .icon .text{
@@ -795,6 +796,12 @@ form {
     visibility: visible;
 }
 
+/* New Styles for React */
+.side-bar.expanded {
+    width: 250px;
+}
+
+
 
 
 /*Navi bar media queries*/
@@ -873,6 +880,7 @@ form {
 @media screen and (max-width){
     
 }
+
 
 
 

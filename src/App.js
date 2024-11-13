@@ -1,16 +1,24 @@
-import React from "react";
-import './App.css'
+import React, { useState } from "react";
+import "./App.css";
 import Navbar from "./components/Navbar/Navbar";
 import Main from "./components/Main/Main";
-// The main router
+
 
 const App = () => {
+
+  // State to control the sidebars expanded view
+  const [isSidebarExplanded, setIsSidebarExpanded] = useState(false);
+
+  const toggleSidebar = () =>{
+    setIsSidebarExpanded((prevState) => !prevState)
+  }
+
   return (
     <>
-      <Navbar />
-      <Main />
+      <Navbar onMenuClick={toggleSidebar} />
+      <Main isExpanded={isSidebarExplanded}/>
     </>
-  )
+  );
 };
 
 export default App;
