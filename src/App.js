@@ -1,8 +1,16 @@
 import React from "react";
+import './App.css'
+import Navbar from "./components/Navbar/Navbar";
+import Main from "./components/Main/Main";
 // The main router
 
 const App = () => {
-  return <div>App</div>;
+  return (
+    <>
+      <Navbar />
+      <Main />
+    </>
+  )
 };
 
 export default App;
