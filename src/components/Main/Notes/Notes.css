@@ -795,10 +795,6 @@ form {
     visibility: visible;
 }
 
-.take-a-note.active-form.appear{
-    display: block;
-}
-
 
 
 /*Navi bar media queries*/

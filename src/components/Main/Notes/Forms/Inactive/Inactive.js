@@ -1,10 +1,11 @@
 import React from "react";
 import "./Inactive.css";
 
-const Inactive = () => {
+const Inactive = ( {onInactiveFormClick, isInactiveFormClick}) => {
+  
   return (
-    <form className="take-a-note inactive-form">
-      <input type="text" placeholder="Take a note..." />
+    <form className={`take-a-note inactive-form ${isInactiveFormClick? "disappear": ""}`}>
+      <input type="text" placeholder="Take a note..." onClick={onInactiveFormClick} />
       <div className="material-symbols-outlineds take tooltipmain">
         <span className="material-symbols-outlined">check_box</span>
         <span className="tooltip-inactive-form">New list</span>

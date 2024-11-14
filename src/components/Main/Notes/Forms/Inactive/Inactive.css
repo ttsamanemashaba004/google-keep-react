@@ -795,6 +795,12 @@ form {
     visibility: visible;
 }
 
+.take-a-note.inactive-form.disappear{
+    display: none;
+}
+
+
+
 
 
 /*Navi bar media queries*/

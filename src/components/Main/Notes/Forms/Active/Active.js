@@ -1,11 +1,30 @@
 import React from "react";
 import "./Active.css";
 
-const Active = () => {
+const Active = ({
+  onFormClose,
+  isActiveFormClosed,
+  setTitle,
+  setText,
+  title,
+  text,
+}) => {
   return (
-    <form className="take-a-note active-form" id="active-form">
+    <form
+      className={`take-a-note active-form ${
+        isActiveFormClosed ? "appear" : ""
+      }`}
+      id="active-form"
+    >
       <div className="title-div tooltipmain">
-        <input id="note-title" className="title" type="text" placeholder="Title" />
+        <input
+          id="note-title"
+          className="title"
+          type="text"
+          placeholder="Title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
         <span className="material-symbols-outlined tooltipmain2">keep</span>
         <span className="tooltip-pin-note">Pin note</span>
       </div>
@@ -14,6 +33,8 @@ const Active = () => {
         className="note"
         type="text"
         placeholder="Take a note..."
+        value={text}
+        onChange={(e) => setText(e.target.value)}
       />
 
       <div className="bottom-section">
@@ -68,7 +89,7 @@ const Active = () => {
           </div>
         </div>
         <div className="close-btn">
-          <button>Close</button>
+          <button onClick={onFormClose}>Close</button>
         </div>
       </div>
     </form>

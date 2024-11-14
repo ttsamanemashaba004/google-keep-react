@@ -1,9 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Modal.css";
 
-const Modal = () => {
+const Modal = ({ note, closeModal }) => {
+  const [title, setTitle] = useState(note ? note.title : "");
+  const [text, setText] = useState(note ? note.text : "");
+
+  if (!note) {
+    return null;
+  }
+
+  const handleOutsideClick = (e) => {
+    if (e.target.classList.contains("modal")) {
+      closeModal(e);
+    }
+  };
+
   return (
-    <div className="modal">
+    <div
+      className={`modal ${note ? "open-modal" : ""}`}
+      onClick={handleOutsideClick}
+    >
       <div className="modal-content">
         <form className="take-a-note active-form form-modal" id="modal-form">
           <div className="title-div tooltipmain title-grow">
@@ -12,6 +28,8 @@ const Modal = () => {
               id="modal-title"
               type="text"
               placeholder="Title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
             />
             <span className="material-symbols-outlined tooltipmain2">keep</span>
             <span className="tooltip-pin-note">Pin note</span>
@@ -21,6 +39,8 @@ const Modal = () => {
             className="note"
             type="text"
             placeholder="Take a note..."
+            value={text}
+            onChange={(e) => setText(e.target.value)}
           />
 
           <div className="edited-section">
@@ -78,7 +98,13 @@ const Modal = () => {
               </div>
             </div>
             <div className="close-btn">
-              <button id="modal-btn">Close</button>
+              <button
+                id="modal-btn"
+                className="preventsubmit"
+                onClick={closeModal}
+              >
+                Close
+              </button>
             </div>
           </div>
         </form>
