@@ -10,19 +10,33 @@ const Notes = () => {
   // State to control the modal
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedNote, setSelectedNote] = useState(null);
-  const [notes, setNotes] = useState([
-    { id: 1, title: "Sample title 1", text: "Sample text 1" },
-    { id: 2, title: "Sample title 2", text: "Sample text 2" },
-  ]);
+  const [notes, setNotes] = useState([]);
 
   const addNote = (title, text) => {
     const newNote = {
       id: notes.length + 1,
       title,
-      text
+      text,
     };
     setNotes((prevNotes) => [newNote, ...prevNotes]);
-  }
+  };
+
+  const updateNote = (id, updatedTitle, updatedText) => {
+    setNotes((prevNotes) => {
+      return prevNotes.map((note) =>
+        note.id === id
+          ? { ...note, title: updatedTitle, text: updatedText }
+          : note
+      );
+    });
+  };
+
+  const deleteNote = (id) => {
+    console.log("hekk3");
+    console.log("notes now", notes);
+    setNotes((prevNotes) => prevNotes.filter((note) => note.id !== id));
+    console.log("notes after", notes);
+  };
 
   const openModal = (note) => {
     setIsModalOpen(true);
@@ -30,19 +44,29 @@ const Notes = () => {
   };
 
   const closeModal = (e) => {
-    if (e.target.classList.contains("preventsubmit")) {
+    if (e.target.className === "preventsubmit") {
+      
       e.preventDefault();
     }
     setIsModalOpen(false);
     setSelectedNote(null);
   };
 
+  
+
   return (
     <div className="note-section">
-      <Forms addNote={addNote}/>
-      <Note openModal={openModal} notes={notes} />
+      <Forms addNote={addNote} />
+      <Note openModal={openModal} notes={notes} deleteNote={deleteNote} />
       <NoteImage />
-      {isModalOpen && <Modal note={selectedNote} closeModal={closeModal} />}
+      {isModalOpen && (
+        <Modal
+          note={selectedNote}
+          closeModal={closeModal}
+          updateNote={updateNote}
+          
+        />
+      )}
     </div>
   );
 };

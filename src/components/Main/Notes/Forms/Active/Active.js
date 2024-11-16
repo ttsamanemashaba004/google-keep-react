@@ -2,12 +2,13 @@ import React from "react";
 import "./Active.css";
 
 const Active = ({
-  onFormClose,
   isActiveFormClosed,
   setTitle,
   setText,
   title,
   text,
+  handleClose,
+  handleCloseButton
 }) => {
   return (
     <form
@@ -89,7 +90,7 @@ const Active = ({
           </div>
         </div>
         <div className="close-btn">
-          <button onClick={onFormClose}>Close</button>
+          <button id="closebtn" onClick={handleCloseButton}>Close</button>
         </div>
       </div>
     </form>

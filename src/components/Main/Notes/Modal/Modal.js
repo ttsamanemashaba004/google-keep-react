@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Modal.css";
 
-const Modal = ({ note, closeModal }) => {
+const Modal = ({ note, closeModal, updateNote }) => {
   const [title, setTitle] = useState(note ? note.title : "");
   const [text, setText] = useState(note ? note.text : "");
 
@@ -10,10 +10,22 @@ const Modal = ({ note, closeModal }) => {
   }
 
   const handleOutsideClick = (e) => {
-    if (e.target.classList.contains("modal")) {
+    if (e.target.classList.contains("modal") || e.target.classList.contains("preventsubmit")) {
+      handleSaveAndClose(title, text);
       closeModal(e);
+      
+      
     }
   };
+
+  const handleSaveAndClose = (title, text) => {
+    if (title !== note.title || text !== note.text) {
+      updateNote(note.id, title, text); 
+    }
+
+  };
+
+  
 
   return (
     <div
@@ -101,7 +113,7 @@ const Modal = ({ note, closeModal }) => {
               <button
                 id="modal-btn"
                 className="preventsubmit"
-                onClick={closeModal}
+                onClick={handleOutsideClick}
               >
                 Close
               </button>

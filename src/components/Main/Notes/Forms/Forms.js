@@ -3,7 +3,7 @@ import "./Forms.css";
 import Inactive from "./Inactive/Inactive";
 import Active from "./Active/Active";
 
-const Forms = ({addNote}) => {
+const Forms = ({ addNote }) => {
   const [isActiveForm, setIsActiveForm] = useState(false); // State used to bring out active form and close active form
 
   const [title, setTitle] = useState(""); // States used to clear title and text in our active form
@@ -16,18 +16,51 @@ const Forms = ({addNote}) => {
   };
 
   const handleFormClick = () => {
-    //Function to show active form when inactive form is clicked
     setIsActiveForm(true);
+
+    setTimeout(() => {
+      const titleInput = document.getElementById("note-title");
+      if (titleInput) {
+        titleInput.focus();
+      }
+    }, 0);
+    document.addEventListener("mousedown", handleDocumentClick);
   };
 
-  const handleClose = (e) => {
-    //Function to close active form.
-    if(title || text){
-      addNote(title, text);
+  const handleDocumentClick = (event) => {
+    console.log("heard event");
+    if (!event.target.closest(".active-form")) {
+      handleClose();
+    }
+  };
+
+  const handleCloseButton = (event) => {
+    event.preventDefault();
+    const currentTitle = document.getElementById("note-title")?.value || "";
+    const currentText = document.getElementById("note-text")?.value || "";
+
+    if (currentTitle || currentText) {
+      addNote(currentTitle, currentText);
     }
     clearInputs();
-    e.preventDefault();
+
     setIsActiveForm(false);
+
+    document.removeEventListener("mousedown", handleDocumentClick);
+  };
+
+  const handleClose = () => {
+    const currentTitle = document.getElementById("note-title")?.value || "";
+    const currentText = document.getElementById("note-text")?.value || "";
+
+    if (currentTitle || currentText) {
+      addNote(currentTitle, currentText);
+    }
+    clearInputs();
+
+    setIsActiveForm(false);
+
+    document.removeEventListener("mousedown", handleDocumentClick);
   };
 
   return (
@@ -37,12 +70,13 @@ const Forms = ({addNote}) => {
         isInactiveFormClick={isActiveForm}
       />
       <Active
-        onFormClose={handleClose}
         isActiveFormClosed={isActiveForm}
         setTitle={setTitle}
         setText={setText}
         title={title}
         text={text}
+        handleClose={handleClose}
+        handleCloseButton = {handleCloseButton}
       />
     </>
   );
