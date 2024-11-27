@@ -222,6 +222,7 @@ form {
 .active-lightbulb{
     background-color: #feefc3;
     border-radius: 0 50px 50px 0;
+    cursor: pointer;
 }
 
 
@@ -269,7 +270,7 @@ form {
     background-color: rgba(95, 99, 104, 0.1);
 }
 
-.active:hover{
+.side-bar .active:hover{
     cursor: pointer;
     background-color: #feefc3;
 }
@@ -277,6 +278,7 @@ form {
 .active{
     background-color: #feefc3;
     color: black;
+    cursor: pointer;
 }
 
 

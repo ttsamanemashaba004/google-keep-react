@@ -32,10 +32,7 @@ const Notes = () => {
   };
 
   const deleteNote = (id) => {
-    console.log("hekk3");
-    console.log("notes now", notes);
     setNotes((prevNotes) => prevNotes.filter((note) => note.id !== id));
-    console.log("notes after", notes);
   };
 
   const openModal = (note) => {
@@ -45,14 +42,13 @@ const Notes = () => {
 
   const closeModal = (e) => {
     if (e.target.className === "preventsubmit") {
-      
       e.preventDefault();
     }
     setIsModalOpen(false);
     setSelectedNote(null);
   };
 
-  
+
 
   return (
     <div className="note-section">
@@ -64,7 +60,6 @@ const Notes = () => {
           note={selectedNote}
           closeModal={closeModal}
           updateNote={updateNote}
-          
         />
       )}
     </div>

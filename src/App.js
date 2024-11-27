@@ -13,6 +13,17 @@ const App = () => {
     setIsSidebarExpanded((prevState) => !prevState)
   }
 
+  const parentElement = document.querySelector('.notes-canvas');
+
+  if(parentElement){
+    console.log(123)
+    const numberOfChildren = parentElement.childElementCount;
+    console.log(numberOfChildren)
+  }
+  
+
+  
+
   return (
     <>
       <Navbar onMenuClick={toggleSidebar} />
