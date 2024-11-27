@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import "./Note.css";
 import SingleNote from "./SingleNote";
 

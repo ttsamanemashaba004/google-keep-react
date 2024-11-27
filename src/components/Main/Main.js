@@ -1,4 +1,3 @@
-import React, { useState } from 'react'
 import './Main.css'
 import Sidebar from './Sidebar/Sidebar'
 import Notes from './Notes/Notes'
